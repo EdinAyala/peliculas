@@ -1,5 +1,6 @@
 $(document).ready(function () {
     listar_peliculas();
+    cargar_catalogo()
 
     $("#btn_guardar_movie").click(function () { 
         guardar_pelicula();
@@ -36,27 +37,38 @@ function listar_peliculas() {
     })
     .done(function (response) {
         if (response.success) {
+            console.log(response);
+            
             let cuerpo = '';
-            response.resultado.forEach((pelicula, index) => {
-                cuerpo += `
+            if (response.resultado.length === 0) {
+                cuerpo = `
                 <tr>
-                    <td>${index + 1}</td>
-                    <td>${pelicula.titulo}</td>
-                    <td>${pelicula.director}</td>
-                    <td>${pelicula.anio}</td>
-                    <td>${pelicula.clasificacion}</td>
-                    <td>${pelicula.duracion} minutos</td>
-                    <td><img src="data:image/jpeg;base64,${pelicula.poster}" alt="Póster" width="100"></td>
-                    <td>
-                        <button type="button" title="Editar" class="btn btn-warning editar-pelicula" data-id="${pelicula.id_pelicula}">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button type="button" title="Eliminar" class="btn btn-danger eliminar-pelicula" data-id="${pelicula.id_pelicula}">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
+                    <td colspan="8" class="text-center">No hay películas registradas</td>
                 </tr>`;
-            });
+            }else{
+
+                response.resultado.forEach((pelicula, index) => {
+                    cuerpo += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${pelicula.titulo}</td>
+                        <td>${pelicula.director}</td>
+                        <td>${pelicula.anio}</td>
+                        <td>${pelicula.clasificacion}</td>
+                        <td>${pelicula.duracion} minutos</td>
+                        <td><img src="data:image/jpeg;base64,${pelicula.poster}" alt="Póster" width="100"></td>
+                        <td>
+                            <button type="button" title="Editar" class="btn btn-warning editar-pelicula" data-id="${pelicula.id_pelicula}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" title="Eliminar" class="btn btn-danger eliminar-pelicula" data-id="${pelicula.id_pelicula}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+                });
+            }
+            
             $("#tb_peliculas").html(cuerpo);
         } else {
             Swal.fire({
@@ -68,19 +80,61 @@ function listar_peliculas() {
         }
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR);
+        
         console.error("Error al realizar la solicitud:", textStatus, errorThrown);
     });
 }
-let formData = new FormData($("#frm_registro_movie")[0]);
-function guardar_pelicula() {
-    let datos = $("#frm_registro_movie").serialize();
+
+function cargar_catalogo() {
     $.ajax({
-        url: 'app/models/peliculas/registrar.php', // Ruta para guardar o actualizar películas
+        url: 'app/models/peliculas/catalogo.php', // Ruta al archivo PHP que lista las películas
         type: 'POST',
         dataType: 'json',
-        data: {
-            datos: datos
+        data: {}
+    })
+    .done(function (response) {
+        if (response.success) {
+            let cuerpo = '';
+            if (response.resultado.length === 0) {
+                cuerpo = `<option value="0">No hay directores disponibles</option>`;
+            }else{
+                cuerpo += `<option selected value="0">Seleccione un director...</option>`;
+                response.resultado.forEach((pelicula) => {
+                    cuerpo += `
+                    <option value="${pelicula.id_director}">${pelicula.nombre}</option>`;
+                });
+            }
+            
+            $("#id_director").html("");
+            $("#id_director").html(cuerpo);
+        } else {
+            Swal.fire({
+                title: "Atención",
+                icon: "info",
+                html: response.error,
+                confirmButtonText: 'Aceptar'
+            });
         }
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR);
+        
+        console.error("Error al realizar la solicitud:", textStatus, errorThrown);
+    });
+}
+
+
+function guardar_pelicula() {
+    let formData = new FormData($("#frm_registro_movie")[0]);
+    
+    $.ajax({
+        url: 'app/models/peliculas/registrar.php',
+        type: 'POST',
+        dataType: 'json',
+        data: formData,
+        contentType: false, 
+        processData: false 
     })
     .done(function (response) {
         if (response.success) {

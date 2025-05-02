@@ -30,9 +30,11 @@ try {
             );
         } else {
             // Respuesta si no se encuentran películas
+
             $response = array(
-                'success' => false,
-                'error' => 'No se encontraron películas'
+                'success' => true,
+                'resultado' => [],
+                'total' => 0
             );
         }
     } else {
@@ -56,6 +58,9 @@ try {
 }
 
 $con->close(); // Cierra la conexión
-unset($response); // Libera memoria
+// Libera memoria
+foreach (get_defined_vars() as $var => $value) {
+    unset($$var);
+}
 
 ?>
