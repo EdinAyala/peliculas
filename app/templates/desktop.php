@@ -92,9 +92,9 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
               <a href="?mod=peliculas" class="nav-link">
-                <i class="nav-icon fas fa-car"></i>
+                <i class="nav-icon fas fa-film"></i>
                 <p>
-                  Peliculas
+                  Crud Peliculas
                 </p>
               </a>
             </li>
@@ -102,7 +102,7 @@
               <a href="?mod=tamales" class="nav-link">
                 <i class="nav-icon fas fa-arrow-left"></i>
                 <p>
-                  Otra pantalla
+                  Peliculas
                 </p>
               </a>
             </li>

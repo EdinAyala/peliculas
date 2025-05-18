@@ -22,7 +22,7 @@ $conf['peliculas'] = array(
 );
 
 $conf['tamales'] = array(
-    'archivo'=>'peliculas.html',
+    'archivo'=>'peliculas2.html',
     'layout'=>LAYOUT_DESKTOP
 );
 
