@@ -1,3 +1,9 @@
+<?php
+if (isset($_SESSION['peliculas'])) {
+  header('Cache-control: no-cache; must-revalidate');
+  header('location: ?mod=inicio');
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,6 +23,7 @@
     <!-- jQuery -->
     <script src="resources/plugins/jquery/jquery.min.js"></script>
     <script src="resources/dist/js/md5.js"></script>
+    <link rel="stylesheet" href="resources/dist/css/style.css">
 </head>
 
 <body class="hold-transition login-page">

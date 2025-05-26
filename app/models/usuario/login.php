@@ -40,7 +40,7 @@ try {
 
     session_start();
 
-    // Cambio de `vehiculos` a `peliculas`
+
     $_SESSION['peliculas'] = true;
     $_SESSION['peliculas_id_usuario'] = $datosUsuario['id_usuario'];
     $_SESSION['peliculas_usuario'] = $datosUsuario['usuario'];
