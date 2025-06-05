@@ -90,6 +90,14 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+             <li class="nav-item">
+              <a href="?mod=inicio" class="nav-link">
+                <i class="nav-icon fas fa-film"></i>
+                <p>
+                  Inicio
+                </p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="?mod=peliculas" class="nav-link">
                 <i class="nav-icon fas fa-film"></i>
@@ -100,7 +108,7 @@
             </li>
             <li class="nav-item">
               <a href="?mod=tamales" class="nav-link">
-                <i class="nav-icon fas fa-arrow-left"></i>
+                 <i class="nav-icon fas fa-arrow-left"></i>  
                 <p>
                   Peliculas
                 </p>
@@ -108,7 +116,7 @@
             </li>
              <li class="nav-item">
               <a href="?mod=directores" class="nav-link">
-                <i class="nav-icon fas fa-arrow-left"></i>
+                <i class="nav-icon fas fa-arrow-left"></i>  
                 <p>
                   Crud Directores
                 </p>

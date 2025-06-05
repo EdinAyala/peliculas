@@ -12,7 +12,7 @@ $conf['login'] = array(
 );
 
 $conf['inicio'] = array(
-    'archivo'=>'inicio.html',
+    'archivo'=>'inicio.php',
     'layout'=>LAYOUT_DESKTOP
 );
 
