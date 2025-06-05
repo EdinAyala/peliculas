@@ -106,6 +106,14 @@
                 </p>
               </a>
             </li>
+             <li class="nav-item">
+              <a href="?mod=directores" class="nav-link">
+                <i class="nav-icon fas fa-arrow-left"></i>
+                <p>
+                  Crud Directores
+                </p>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

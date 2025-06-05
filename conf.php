@@ -26,6 +26,11 @@ $conf['tamales'] = array(
     'layout'=>LAYOUT_DESKTOP
 );
 
+$conf['directores'] = array(
+    'archivo'=>'directores.html',
+    'layout'=>LAYOUT_DESKTOP
+);
+
 if(1==2){
 
     $conf['pupusas'] = array(
